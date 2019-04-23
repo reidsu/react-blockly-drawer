@@ -8,6 +8,10 @@ let styles = null;
 const initTools = (tools) => {
   tools.forEach((tool) => {
     Blockly.Blocks[tool.name] = tool.block;
+    if (tool.lang && Blockly[tool.lang]) {
+      Blockly[tool.lang][tool.name] = tool.generator;
+      return;
+    }
     Blockly.JavaScript[tool.name] = tool.generator;
   });
 };

@@ -35,6 +35,10 @@ var styles = null;
 var initTools = function initTools(tools) {
   tools.forEach(function (tool) {
     _browser2.default.Blocks[tool.name] = tool.block;
+    if (tool.lang && _browser2.default[tool.lang]) {
+      _browser2.default[tool.lang][tool.name] = tool.generator;
+      return;
+    }
     _browser2.default.JavaScript[tool.name] = tool.generator;
   });
 };
